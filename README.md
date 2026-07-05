@@ -50,7 +50,7 @@ When fire is detected, the system:
 ---
 ## ⚙️ Installation
 
-git clone https://github.com/YOUR_USERNAME/Fire-Detection-System.git
+git clone https://github.com/nooorahmed873-cloud /Fire-Detection-System.git
 
 cd Fire-Detection-System
 
