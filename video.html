@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart School - Live Detection</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#1a0f0a,#2a1410,#150a08);
+color:white;
+height:100vh;
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+background:#f97316;
+
+filter:blur(180px);
+
+left:-150px;
+top:-150px;
+
+opacity:.35;
+
+}
+
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+width:450px;
+height:450px;
+
+background:#ef4444;
+
+filter:blur(180px);
+
+right:-150px;
+bottom:-120px;
+
+opacity:.3;
+
+}
+
+
+
+.container{
+
+position:relative;
+
+z-index:5;
+
+display:flex;
+
+gap:25px;
+
+width:95%;
+
+height:90%;
+
+}
+
+
+
+.video-card{
+
+flex:3;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:25px;
+
+padding:20px;
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+
+text-align:center;
+
+}
+
+
+
+.video-card h2{
+
+margin-bottom:20px;
+
+font-size:30px;
+
+}
+
+
+
+.video-card img{
+
+width:100%;
+
+max-height:650px;
+
+border-radius:20px;
+
+border:3px solid #f97316;
+
+}
+
+
+
+.side{
+
+flex:1;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border-radius:25px;
+
+padding:25px;
+
+border:1px solid rgba(255,255,255,.15);
+
+display:flex;
+
+flex-direction:column;
+
+gap:25px;
+
+}
+
+
+
+.box{
+
+background:#1a0f0a;
+
+padding:20px;
+
+border-radius:18px;
+
+text-align:center;
+
+}
+
+
+
+.box h3{
+
+margin-bottom:10px;
+
+color:#fb923c;
+
+}
+
+
+
+.status{
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#22c55e;
+
+}
+
+
+
+button{
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(90deg,#ea580c,#ef4444);
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+transition:.3s;
+
+width:100%;
+
+}
+
+
+
+button.on{
+
+background:linear-gradient(90deg,#16a34a,#22c55e);
+
+}
+
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+
+a{
+
+text-decoration:none;
+
+color:white;
+
+}
+
+
+
+#flash{
+
+position:fixed;
+
+inset:0;
+
+background:red;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.2s;
+
+z-index:999;
+
+}
+
+
+
+@keyframes shake{
+
+0%{transform:translate(0);}
+25%{transform:translate(5px,-5px);}
+50%{transform:translate(-5px,5px);}
+75%{transform:translate(5px,5px);}
+100%{transform:translate(0);}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="flash"></div>
+
+<div class="container">
+
+<div class="video-card">
+
+<h2>🔥 Live Fire Detection</h2>
+
+<img src="/video">
+
+</div>
+
+
+<div class="side">
+
+<div class="box">
+
+<h3>Status</h3>
+
+<div id="status" class="status">
+
+SAFE
+
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h3>Alarm</h3>
+
+<button id="soundBtn" onclick="enableSound()">
+
+🔊 Enable Sound
+
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h3>Navigation</h3>
+
+<button>
+
+<a href="/static">⬅️ Back</a>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<audio id="alarm" src="/alarm.mp3" preload="auto" loop></audio>
+
+<script>
+
+let alarm=document.getElementById("alarm");
+
+let flash=document.getElementById("flash");
+
+let status=document.getElementById("status");
+
+let soundBtn=document.getElementById("soundBtn");
+
+let soundEnabled=false;
+
+let danger=false;
+
+
+
+function enableSound(){
+
+soundEnabled=true;
+
+alarm.play()
+.then(()=>{
+
+alarm.pause();
+
+alarm.currentTime=0;
+
+soundBtn.textContent="✅ Sound Enabled";
+
+soundBtn.classList.add("on");
+
+})
+.catch(err=>{
+
+console.log("enable sound error:",err);
+
+alert("اضغطي الزرار تاني، البراوزر محتاج تفعيل صوت بلمسة مباشرة");
+
+});
+
+}
+
+
+
+function startAlarm(){
+
+document.body.style.animation="shake .2s infinite";
+
+flash.style.opacity=.45;
+
+status.innerHTML="FIRE DETECTED";
+
+status.style.color="#ef4444";
+
+
+
+if(soundEnabled && alarm.paused){
+
+alarm.currentTime=0;
+
+alarm.play().catch(e=>console.log("play error",e));
+
+}
+
+}
+
+
+
+function stopAlarm(){
+
+document.body.style.animation="none";
+
+flash.style.opacity=0;
+
+status.innerHTML="SAFE";
+
+status.style.color="#22c55e";
+
+alarm.pause();
+
+alarm.currentTime=0;
+
+}
+
+
+
+setInterval(async()=>{
+
+try{
+
+let response=await fetch("/status");
+
+let data=await response.json();
+let fire=data.fire===true||data.fire==="true";
+
+
+
+if(fire){
+
+if(!danger){
+
+danger=true;
+
+startAlarm();
+
+}
+
+}
+
+else{
+
+if(danger){
+
+danger=false;
+
+stopAlarm();
+
+}
+
+}
+
+}
+catch(e){
+
+console.log("status error",e);
+
+}
+
+},300);
+
+</script>
+
+</body>
+
+</html>

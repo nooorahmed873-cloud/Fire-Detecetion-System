@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart School - Fire Detection</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#1a0f0a,#2a1410,#150a08);
+
+    overflow:hidden;
+}
+
+
+/* خلفية متحركة */
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+width:600px;
+height:600px;
+
+background:#f97316;
+
+filter:blur(180px);
+
+left:-200px;
+top:-150px;
+
+opacity:.35;
+
+animation:move1 12s infinite alternate;
+
+}
+
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+background:#ef4444;
+
+filter:blur(180px);
+
+right:-150px;
+bottom:-120px;
+
+opacity:.35;
+
+animation:move2 10s infinite alternate;
+
+}
+
+@keyframes move1{
+
+from{transform:translateY(0);}
+to{transform:translateY(120px);}
+
+}
+
+@keyframes move2{
+
+from{transform:translateX(0);}
+to{transform:translateX(-100px);}
+
+}
+
+
+
+.container{
+
+position:relative;
+
+z-index:5;
+
+width:520px;
+
+padding:40px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 15px 40px rgba(0,0,0,.45);
+
+text-align:center;
+
+color:white;
+
+}
+
+
+
+.logo{
+
+font-size:70px;
+
+margin-bottom:10px;
+
+}
+
+
+
+h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+
+
+p{
+
+color:#d1d5db;
+
+margin-bottom:30px;
+
+line-height:1.7;
+
+}
+
+
+
+label{
+
+display:block;
+
+text-align:left;
+
+margin-bottom:8px;
+
+font-size:15px;
+
+font-weight:bold;
+
+color:#f3f4f6;
+
+}
+
+
+
+input[type=file]{
+
+width:100%;
+
+padding:15px;
+
+border-radius:12px;
+
+border:2px dashed #f97316;
+
+background:#1a0f0a;
+
+color:white;
+
+margin-bottom:22px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+input[type=file]:hover{
+
+background:#2a1410;
+
+border-color:#fb923c;
+
+}
+
+
+
+button{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(90deg,#ea580c,#ef4444);
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 8px 20px rgba(239,68,68,.4);
+
+}
+
+
+
+button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 12px 30px rgba(239,68,68,.5);
+
+}
+
+
+
+.footer{
+
+margin-top:25px;
+
+font-size:13px;
+
+color:#cbd5e1;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+<div class="logo">
+🔥
+</div>
+
+<h1>Smart School</h1>
+
+<p>
+AI Fire Detection System<br>
+Upload a surveillance video and start automatic fire detection.
+</p>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+<label>📹 Select Video</label>
+
+<input
+type="file"
+name="video"
+accept="video/*"
+required
+>
+
+<button type="submit">
+🚀 Start Detection
+</button>
+
+</form>
+
+
+<div class="footer">
+
+Powered by YOLO • OpenCV • Flask • AI
+
+</div>
+
+</div>
+
+</body>
+
+</html>
