@@ -1,3 +1,4 @@
+<img width="720" height="1600" alt="fire detection" src="https://github.com/user-attachments/assets/e64b0e28-b204-4486-9d0e-3ff1610f657f" />
 # 🔥 Fire Detection System using YOLO
 
 ## 📌 Overview
@@ -35,6 +36,7 @@ This demo shows the system detecting fire in a sample video, automatically activ
 
 https://github.com/user-attachments/assets/8a491068-bc26-46d2-9278-1c1152ad5f2f
 
+<img width="720" height="1600" alt="fire detection" src="https://github.com/user-attachments/assets/1ab8526d-2107-44ec-b291-154d032aa064" />
 
 
 
