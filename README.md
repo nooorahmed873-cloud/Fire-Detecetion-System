@@ -34,9 +34,12 @@ This project is an AI-powered fire detection system built using the YOLO model. 
 This demo shows the system detecting fire in a sample video, automatically activating an alarm, and sending an instant Telegram notification.
 
 
-https://github.com/user-attachments/assets/8a491068-bc26-46d2-9278-1c1152ad5f2f
 
-<img width="320" height="600" alt="fire detection" src="https://github.com/user-attachments/assets/1ab8526d-2107-44ec-b291-154d032aa064" />
+https://github.com/user-attachments/assets/035ce7e9-0de9-4e60-9151-2bb5ad294868
+
+
+<img width="326" height="680" alt="final screan" src="https://github.com/user-attachments/assets/7297fcae-4e74-4c8b-9896-882b93c9df92" />
+
 
 
 
