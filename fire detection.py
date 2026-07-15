@@ -18,8 +18,8 @@ model = YOLO("best.pt")
 # 📲 TELEGRAM SETTINGS
 # =========================
 
-BOT_TOKEN = "8951743804:AAE_KSQpFcg4ngr3x4Wwrvar2EQzmEeIRYM"
-CHAT_ID = "1062322947"
+bot_token="YOUR_BOT_TOKEN"
+chat_id="YOUR_CHAT_ID"
 
 
 def send_telegram_alert():
